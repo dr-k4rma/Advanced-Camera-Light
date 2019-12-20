@@ -8,11 +8,17 @@
 --]]
 
 --// SERVICES AND PRIMARY OBJECTS \\--
+local Plugin = {}
 
-local Toolbar = plugin:CreateToolbar("Utils")
+Plugin.Toolbar = game:GetService("CoreGui"):FindFirstChild("15993674_Utils")
+if not Plugin.Toolbar then
+	Plugin.Toolbar = plugin:CreateToolbar("Utils")
+	Plugin.Toolbar.Parent = game:GetService("CoreGui")
+	Plugin.Toolbar.Name = "15993674_Utils"
+end
 
-local UiHandler = require(script.UiHandler)
-local DockHandler = require(script.DockHandler)
+local UiHandler = require(script.Parent.UiHandler)
+local DockHandler = require(script.Parent.DockHandler)
 
 --// CHANGABLE VARIABLES \\--
 
@@ -21,10 +27,9 @@ local DockHandler = require(script.DockHandler)
 local UseDock = plugin:GetSetting("ACL_UseDock") or false
 
 --// FUNCTIONS \\--
-local Plugin = {}
 
 Plugin.Mouse = plugin:GetMouse()
-Plugin.Button = Toolbar:CreateButton("", "Advanced Camera Light", "http://www.roblox.com/asset/?id=4460541537")
+Plugin.Button = Plugin.Toolbar:CreateButton("", "Advanced Camera Light", "http://www.roblox.com/asset/?id=4460541537")
 Plugin.Active = false
 Plugin.UseDock = UseDock
 
